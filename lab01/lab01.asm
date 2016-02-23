@@ -30,7 +30,9 @@ main:   # Words ending with ':' are **labels**
         #   to display a string for us. Think of it as a special
         #   subroutine.
         
-        addiu      $v0, $zero, 5     # system service 5: read integer
+        la	$a0,mes2
+        
+       	addiu      $v0, $zero, 4    # system service 5: read integer
         syscall                      # integer returned in $v0
         
         add        $s1, $zero, $v0   # $s1 = (read value)
@@ -75,12 +77,13 @@ exit:
         #  
 matric: .word 0    # This will be used by your submitted code
 
-mesg1:  .asciiz "Enter matriculation number: "
+mesg1:  .asciiz "My matriculation number is: "
         # Data can have labels too, so we can refer to them
         # asciiz is a directive, which tells the assmbler that a string (ending
         #      with special character '\0') follows
         .align 2     # Align next data item on specified byte bounday (0-byte,
                      #    1-half, 2-word, 3-double)
+mes2:	.asciiz "2503"
 var1:   .word 1      # store a word-sized 0 in data memory
 var2:   .word 0
 array:  .word 0 : 9 # Array of 10 words (initialized to 0)
